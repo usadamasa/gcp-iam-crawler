@@ -36,7 +36,9 @@ fun main(args: Array<String>) {
     val bindings = fetchBindings(service, resource)
     bindings.forEach { b ->
         b.members.forEach { m ->
-            val elem = m.split(":") + b.role
+            val account = Account.create(m)
+            val elem =
+                listOf(project) + account.type + account.name + listOf(b.role) + account.active
             println(elem.joinToString(","))
         }
     }
